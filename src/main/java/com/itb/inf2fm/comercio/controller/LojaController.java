@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,7 +18,7 @@ public class LojaController {
 	List<Produto> listaDeProdutos = new ArrayList<Produto>();
 	
 	@GetMapping("/listar")
-	public String listarProdutos() {
+	public String listarProdutos(Model model) {
 		
 		Produto p1 = new Produto();
 		p1.setId(20l);
@@ -27,15 +28,17 @@ public class LojaController {
 		p1.setPreco(3215.89);
 		
 		Produto p2 = new Produto();
-		p2.setId(20l);
+		p2.setId(21l);
 		p2.setNome("Televisor 70'");
-		p2.setDescricao("56FUH64378FFG9");
-		p2.setCodigoBarras("Televisor Tela Plana led Samsung");
+		p2.setDescricao("Televisor Tela Plana led Samsung");
+		p2.setCodigoBarras("56FUH64378FFG9");
 		p2.setPreco(6326.12);
 		
 		//Adicionando os produtos à lista
 		listaDeProdutos.add(p1);
 		listaDeProdutos.add(p2);
+		
+		model.addAttribute("listaDeProdutos", listaDeProdutos);
 		
 		return "produtos";
 	

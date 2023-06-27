@@ -26,7 +26,8 @@
                             <th>Descrição</th>
                             <th>Código de Barras</th>
                             <th>Preço</th>
-                            <th><a href="">Editar</a></th>
+                            <th>Status</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +37,12 @@
                             <td th:text="${produto.descricao}"></td>
                             <td th:text="${produto.codigoBarras}"></td>
                             <td th:text="${produto.preco}"></td>
-                            <td><a href="">Editar</a></td>
+                            <td th:text="${produto.codStatus} ? 'Ativo' : 'Inativo'"></td>
+                            <td>
+                                <a href="#"class="btn btn-primary">
+                                    <i class="fas fa-edit ml-2"></i>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

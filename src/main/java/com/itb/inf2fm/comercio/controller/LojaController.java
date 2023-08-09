@@ -21,6 +21,7 @@ public class LojaController {
 	@GetMapping("/listar")
 	public String listarProdutos(Model model) {
 		
+		/*
 		Produto p1 = new Produto();
 		p1.setId(20l);
 		p1.setNome("Máquina de Lavar Brastemp 15l");
@@ -40,6 +41,7 @@ public class LojaController {
 		//Adicionando os produtos à lista
 		listaDeProdutos.add(p1);
 		listaDeProdutos.add(p2);
+		*/
 		
 		model.addAttribute("listaDeProdutos", listaDeProdutos);
 		

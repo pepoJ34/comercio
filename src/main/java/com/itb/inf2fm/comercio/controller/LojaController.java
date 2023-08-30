@@ -58,7 +58,7 @@ public class LojaController {
 	}
 	
 	@PostMapping("/add-prod")
-	public String gravarProduto(Produto produto) {
+	public String gravarProduto(Produto produto, Model model) {
 		
 		listaDeProdutos.add(produto);
 		

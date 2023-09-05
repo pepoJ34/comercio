@@ -3,6 +3,7 @@ package com.itb.inf2fm.comercio.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itb.inf2fm.comercio.model.Produto;
+import com.itb.inf2fm.comercio.repository.ProdutoRepository;
 
 @Controller
 @RequestMapping("/comercio/produtos")
 
 public class LojaController {
 	
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
 	List<Produto> listaDeProdutos = new ArrayList<Produto>();
 	
 	@GetMapping("/listar")
 	public String listarProdutos(Model model) {
+		
 		
 		/*
 		Produto p1 = new Produto();
@@ -43,7 +49,10 @@ public class LojaController {
 		listaDeProdutos.add(p2);
 		*/
 		
-		model.addAttribute("listaDeProdutos", listaDeProdutos);
+		List<Produto> listaProdutoBanco = produtoRepository.findAll();
+		model.addAttribute("listaDeProdutos", listaProdutoBanco);
+		
+		//model.addAttribute("listaDeProdutos", listaDeProdutos);
 		
 		return "produtos";
 	
@@ -60,7 +69,11 @@ public class LojaController {
 	@PostMapping("/add-prod")
 	public String gravarProduto(Produto produto, Model model) {
 		
-		listaDeProdutos.add(produto);
+		//listaDeProdutos.add(produto);
+		
+		Produto produtoBanco = produtoRepository.save(produto);
+		//ListaDeProdutos.add(produtoBanco);
+		
 		
 		//Redirecionando para uma rota "existente"
 		return "redirect:/comercio/produtos/listar";

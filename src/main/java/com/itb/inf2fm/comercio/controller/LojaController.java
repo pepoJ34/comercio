@@ -18,7 +18,7 @@ import com.itb.inf2fm.comercio.repository.ProdutoRepository;
 
 public class LojaController {
 	
-	@Autowired
+	@Autowired	//Injeção de dependência
 	private ProdutoRepository produtoRepository;
 	
 	List<Produto> listaDeProdutos = new ArrayList<Produto>();
@@ -57,7 +57,8 @@ public class LojaController {
 		return "produtos";
 	
 	}
-
+	
+	//Carregar o formulário de cadastro
 	@GetMapping("/novo-produto")
 	public String novoProduto(Produto produto, Model model){
 		
@@ -66,9 +67,10 @@ public class LojaController {
 		return "novo-prod";
 	}
 	
+	//Adicionar produto no banco de dados
 	@PostMapping("/add-prod")
 	public String gravarProduto(Produto produto, Model model) {
-		
+		produto.setCodStatus(true);
 		//listaDeProdutos.add(produto);
 		
 		Produto produtoBanco = produtoRepository.save(produto);
@@ -77,6 +79,15 @@ public class LojaController {
 		
 		//Redirecionando para uma rota "existente"
 		return "redirect:/comercio/produtos/listar";
+		//return "redirect:/comercio/produtos/sucesso-produto";
 	}
+	
+	//Abrir página de sucesso do produto
+	/*
+	 @GetMapping("/sucesso-produto")
+	 String showPageSuccessProduto(){
+	 	return "pagina-sucesso";
+	 }
+	*/
 	
 }
